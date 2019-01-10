@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+footer{
+  position: fixed;
+  bottom: 0;
+}
+.message-div{
+  display: flex;
+=======
 html, body {
   margin: 0;
   font-family: "comic sans MS";
@@ -56,4 +64,5 @@ html, body {
 
 .container-jumbo{
   height: 100%;
+>>>>>>> b6c7dd7cf7032f72a9621c73cc4d27d8e674d017
 }
