@@ -13,61 +13,78 @@
 
 <body>
 
-  <div class = "container-body">
+  <div class="container-body">
     <!-- the three columns, so everything except the footer -->
-  <div class="row h-100">
-    <div class="col-md-2 col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          Online Users
+    <div class="row h-100">
+      <div class="col-3 d-none d-md-block">
+        <div class="card">
+          <div class="card-header">
+            Online Users
+          </div>
+          <div class="card-body">
+            Online Users Go here
+          </div>
         </div>
-        <div class="card-body">
-          Online Users Go here
-        </div>
-      </div>
-    </div> <!-- task bar div (col-2)-->
+      </div> <!-- Online Users (col-md-2)-->
 
-    <div class="col-md-8 col-sm-12">
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container-jumbo">
-          <h1 class="display-4">Fluid jumbotron</h1>
-          <p class="lead">
-          </p>
+      <div class="col-md-9 text-center col-sm-12">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container-jumbo">
+            <h1 class="display-4">Fluid jumbotron</h1>
+            <p class="lead">
+            </p>
+          </div>
         </div>
-      </div>
-    </div> <!-- chat window div (col-8) -->
+      </div> <!-- chat window div (col-md-8) -->
 
-    <div class="col-md-2 col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          Task Bar
+      <div class="d-none">
+        <div class="card">
+          <div class="card-header">
+            Task Bar
+          </div>
+          <div class="card-body">
+            Tasks go here
+          </div>
         </div>
-        <div class="card-body">
-          Tasks go here
+      </div> <!-- Taskbar (col-md-2) -->
+    </div> <!-- first row div -->
+
+
+
+    <div class="fixed-bottom footer" id="footer">
+      <div class="container-fluid">
+        <div class="row">
+           
+        <form class="container-fluid col-lg-10 col-md-12">
+          <div class="form-group">
+              <div class="row">
+                <div class="col-1"></div>
+            <textarea class="form-control col-10" id="textInput" rows="1" placeholder="Write Your Message Here!"></textarea>
+            <div class="col-1"></div>
+          </div>
         </div>
-      </div>
-    </div> <!-- online users div (col-2) -->
-  </div> <!-- first row div -->
+        </form>
 
-  
-
-  <div class="fixed-bottom footer" id="footer">
-    <div class="row">
-      <form class="col-11">
-        <div class="form-group">
-          <textarea class="form-control" id="textInput" rows="1" placeholder="Write Your Message Here!"></textarea>
-        </div>
-      </form>
-
-      <div class="col-1">
-        <button type="button" class="btn btn-primary btn-lg"><i class="far fa-share-square"></i></button>
+        <div class="container-fluid col-lg-2 col-md-12">
+          <div class = "row">
+            <div class="col-4 text-center">
+                <button type="button" class="btn btn-danger btn-lg"><i class="fas fa-tasks"></i></i></button>
+            </div>
+            <div class="d-block d-md-none col-4 text-center">
+                <button type="button" class="btn btn-warning btn-lg"><i class="fas fa-users"></i></i></button>
+              </div>
+              <div class = "col-4 text-center">
+              <button type="button" class="btn btn-primary btn-lg"><i class="far fa-share-square"></i></button>
+            </div>
+            </div>
+            </div>
       </div>
     </div>
-    <!-- footer div -->
-  </div>
+      <!-- footer div -->
+    </div>
 
-  <!--container-body div -->
-</div>
+    <!--container-body div -->
+  </div>
 
 
 
@@ -80,7 +97,7 @@
   <!-- script for firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
   <!-- scripts to refrence javascript files -->
-  <script type="text/javascript" src="assets/scripts/back.js"></script>
+  <!-- <script type="text/javascript" src="assets/scripts/back.js"></script> -->
   <script type="text/javascript" src="assets/scripts/front.js"></script>
 </body>
 
