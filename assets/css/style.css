@@ -76,9 +76,11 @@ html, body {
   margin-right: 10px;
 }
 
-/* .form-control {
-  margin-left: 10px;
-} */
 .container-fluid {
   padding: 0;
+}
+
+.task-bar{
+  position: absolute;
+  top: 40px;
 }
