@@ -15,6 +15,7 @@ chatLog = firebase.database().ref("chatLog");
 var messageCounter = 0;
 var maxMessageCount = 10;
 var firstMessageRef;
+var firstMessageIndex;
 
 var youtube = "youtube.com/watch";
 
@@ -25,28 +26,29 @@ database.ref().once("value", function (snapshot) {
   if (snapshot.child("messageCounter").exists()) {
     messageCounter = snapshot.val().messageCounter;
   }
-  writeFirebase("https://www.youtube.com/watch?v=dz2o_bVkgPA");
-  for (var i = 0; i < 15; i++) {
-    writeFirebase(String(i));
-  }
-  console.log("Counter " + messageCounter);
+  // writeFirebase("https://www.youtube.com/watch?v=dz2o_bVkgPA");
+  // for (var i = 0; i < 15; i++) {
+  //   writeFirebase(String(i));
+  // }
+  // console.log("Counter " + messageCounter);
 
 });
 
 // get last message typed
-chatLog.orderByChild("index").limitToLast(1).on("child_added", function (snapshot) {
+chatLog.orderByChild("index").on("child_added", function (snapshot) {
   //console.log(snapshot.val().index);
+  $(".container-jumbo").append("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div>");
 });
 
 // get move first message
 chatLog.orderByChild("index").limitToFirst(1).on("child_added", function (snapshot) {
   firstMessageRef = database.ref(`chatLog/${snapshot.key}`);
+  firstMessageIndex = snapshot.val().index;
 });
 //write to firebase
 function writeFirebase(message) {
   var type;
-  console.log(message.includes("https"));
-  if (message.includes("")) {
+  if (message.includes("youtube.com/watch")) {
     message = message.split("v=").pop();
     console.log(message);
     type = "youtube";
@@ -60,9 +62,13 @@ function writeFirebase(message) {
     index: messageCounter
   }
   messageCounter++;
-  if (messageCounter > 4) {
+
+  //Remove messages
+  if (messageCounter > maxMessageCount) {
+    $(`#${firstMessageIndex}`).remove();
     firstMessageRef.remove();
   }
+  // Push Variables to Firebase
   database.ref("chatLog").push(messageObject);
   database.ref().child("messageCounter").set(messageCounter);
 }
