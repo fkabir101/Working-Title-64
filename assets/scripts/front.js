@@ -1,27 +1,29 @@
 //function for the document
-$(document).ready(function(){
+$(document).ready(function () {
 
   //this is to hide the taskbar when the page loads
   $(".task-bar").hide();
   $(".online-users-togg").hide();
+  // $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
 
   //this function makes the task button show and hide and show the task div
-  $("#taskButton").click(function(){
-   console.log("taskButton ");
+  $("#taskButton").click(function () {
+    console.log("taskButton ");
     $(".task-bar").toggle();
   });
 
   //this function makes the user button hide and show the users online div
-  $("#usersButton").click(function(){
+  $("#usersButton").click(function () {
     console.log("usersButton");
-     $(".online-users-togg").toggle();
-   });
+    $(".online-users-togg").toggle();
+  });
 
 }); //curly for $(document).ready(function()
 var shiftOn = false;
 
 $("#message-submit").on("click", function () {
   event.preventDefault();
+  
 
   //if input field is empty give an indicator
   if ($("#textInput").val() === "") {
@@ -39,47 +41,59 @@ $("#message-submit").on("click", function () {
     writeFirebase(message);
     //clear out message input field
     $("#textInput").val("");
+    updateScroll();
+  }
+
+  
+});
+
+//run only if shift key is held down
+$(document).keydown(function (event) {
+  if (event.keyCode === 16) {
+    shiftOn = true;
   }
 });
 
-  //run only if shift key is held down
-  $(document).keydown(function(event){
-    if(event.keyCode === 16){
-      shiftOn = true;
-    }
-  });
-
-  $(document).keyup(function(event){
-    if(event.keyCode === 16){
+$(document).keyup(function (event) {
+  if (event.keyCode === 16) {
     shiftOn = false;
+  }
+});
+
+
+//add event listener for submit with enter key
+$(document).keyup(function (eventE) {
+
+
+  if (eventE.keyCode === 13 && shiftOn === false) {
+    event.preventDefault();
+
+    console.log(eventE.keyCode);
+    //if input field is empty give an indicator
+    if ($("#textInput").val() === "") {
+      $("#textInput").addClass("border border-danger");
     }
-  });
 
+    //run if there is user input
+    else {
 
-  //add event listener for submit with enter key
-  $(document).keyup(function(eventE) {
-  
+      //remove highlight on message inoput field
+      $("#textInput").removeClass("border border-danger");
 
-    if (eventE.keyCode === 13 && shiftOn === false) {
-      event.preventDefault();
-
-      console.log(eventE.keyCode);
-      //if input field is empty give an indicator
-      if($("#textInput").val() === ""){
-        $("#textInput").addClass("border border-danger");
-      }
-      
-      //run if there is user input
-      else {
-
-        //remove highlight on message inoput field
-        $("#textInput").removeClass("border border-danger");
-    
-        var inputField = $("#textInput");
-        var message = inputField.val().trim();
-        writeFirebase(message);
-        //clear out message input field
-        $("#textInput").val("");
-      }
+      var inputField = $("#textInput");
+      var message = inputField.val().trim();
+      writeFirebase(message);
+      //clear out message input field
+      $("#textInput").val("");
     }
-  });
+  }
+});
+
+
+//this function scrolls the messages down so the last one is visable
+//   function updateScroll(){
+//     var element = document.getElementsByClassName(".container-jumbo");
+//     element.scrollTop = element.scrollHeight;
+//     console.log("scroll");
+// };
+

@@ -36,8 +36,13 @@ database.ref().once("value", function (snapshot) {
 
 // get last message typed
 chatLog.orderByChild("index").on("child_added", function (snapshot) {
+
+
   //console.log(snapshot.val().index);
-  $(".container-jumbo").append("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div>");
+  $(".container-jumbo").prepend("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div>");
+
+  //this function starts the display scrolled to the bottom of the page
+  $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
 });
 
 // get move first message
