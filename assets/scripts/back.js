@@ -17,7 +17,13 @@ var maxMessageCount = 10;
 var firstMessageRef;
 var firstMessageIndex;
 
+// variables for youtube player
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var youtube = "youtube.com/watch";
+var twitter = "twitter.com";
 
 
 // Run on load to get message counter
@@ -37,12 +43,23 @@ database.ref().once("value", function (snapshot) {
 // get last message typed
 chatLog.orderByChild("index").on("child_added", function (snapshot) {
 
-
+  var index = snapshot.val().index;
+  var message = snapshot.val().message;
   //console.log(snapshot.val().index);
-  $(".container-jumbo").prepend("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div>");
-
+  if (snapshot.val().type === "text") {
+    $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + message + "</div>");
+  } else if (snapshot.val().type === "youtube") {
+    $(".container-jumbo").prepend("<div id = '" + index + "'</div>");
+    createYoutube(index, message)
+  }
+  else if(snapshot.val().type === "tweet"){
+    $(".container-jumbo").prepend("<div id = '" + index + "'</div>");
+    createTweet(index, message);
+  }
+  
   //this function starts the display scrolled to the bottom of the page
   $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
+
 });
 
 // get move first message
@@ -53,11 +70,20 @@ chatLog.orderByChild("index").limitToFirst(1).on("child_added", function (snapsh
 //write to firebase
 function writeFirebase(message) {
   var type;
-  if (message.includes("youtube.com/watch")) {
+  // remove &api call
+  if (message.includes(youtube)) {
     message = message.split("v=").pop();
-    console.log(message);
+    if(message.includes("&")){
+      var messageSplit = message.split("&");
+      message = messageSplit[0];
+    }
     type = "youtube";
-  } else {
+  } 
+  else if(message.includes(twitter) && message.includes("status")){
+    message = message.split("status/").pop();
+    type = "tweet";
+  }
+  else {
     type = "text";
   }
 
@@ -77,3 +103,4 @@ function writeFirebase(message) {
   database.ref("chatLog").push(messageObject);
   database.ref().child("messageCounter").set(messageCounter);
 }
+
