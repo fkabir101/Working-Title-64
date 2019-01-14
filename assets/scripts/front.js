@@ -8,13 +8,13 @@ $(document).ready(function () {
 
   //this function makes the task button show and hide and show the task div
   $("#taskButton").click(function () {
-    console.log("taskButton ");
+    // console.log("taskButton ");
     $(".task-bar").toggle();
   });
 
   //this function makes the user button hide and show the users online div
   $("#usersButton").click(function () {
-    console.log("usersButton");
+    // console.log("usersButton");
     $(".online-users-togg").toggle();
   });
 
@@ -65,6 +65,8 @@ $(document).keyup(function (eventE) {
 
   if (eventE.keyCode === 13 && shiftOn === false) {
     event.preventDefault();
+
+   // console.log(eventE.keyCode);
     //if input field is empty give an indicator
     console.log($("#textInput").val().length );
     if ($("#textInput").val().length === 1) {
@@ -86,12 +88,3 @@ $(document).keyup(function (eventE) {
     }
   }
 });
-
-
-//this function scrolls the messages down so the last one is visable
-//   function updateScroll(){
-//     var element = document.getElementsByClassName(".container-jumbo");
-//     element.scrollTop = element.scrollHeight;
-//     console.log("scroll");
-// };
-
