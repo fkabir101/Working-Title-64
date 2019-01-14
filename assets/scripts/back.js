@@ -46,18 +46,17 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   var index = snapshot.val().index;
   var time = snapshot.val().time;
   var message = snapshot.val().message;
-
   var timeConverted = moment(time, "X").calendar();
   //console.log(snapshot.val().index);
   if (snapshot.val().type === "text") {
-    $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + message + "</div><div class='font-weight-light font-italic'>"+timeConverted+"</div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>"+timeConverted+"</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
-    $(".container-jumbo").prepend("<div id = '" + index + "'</div><div class='font-weight-light font-italic'>"+timeConverted+"</div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'</div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
     $(`#${index}`).append("<div id = '" + index + "Player'</div>");
     createYoutube(index+"Player", message);
   }
   else if(snapshot.val().type === "tweet"){
-    $(".container-jumbo").prepend("<div id = '" + index + "'</div><div class='font-weight-light font-italic'>"+timeConverted+"</div>");
+    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
     createTweet(index, message);
   }
   
@@ -91,7 +90,7 @@ function writeFirebase(message) {
     type = "text";
   }
 
-  var messageObject = {
+  var messageObject = {  
     time: moment().format("X"),
     type: type,
     message: message,
