@@ -58,6 +58,6 @@ function getGiph(search, index) {
     var imageUrl = response.data[0].images.fixed_height.url;;
     var image = $("<img>");
     image.attr("src", imageUrl);
-    $(`#${index}`).prepend(image);
+    $(`#${index}`).append(image);
   });
 }
