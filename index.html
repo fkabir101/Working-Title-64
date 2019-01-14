@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -16,13 +15,14 @@
 
 <body>
 
+  <!-- this is the div to display online users that is visable when the screen is large -->
   <div class="container-body">
     <!-- the three columns, so everything except the footer -->
     <div class="row h-100">
       <div class="col-3 d-none d-md-block online-users">
         <div class="card">
           <div class="card-header">
-            Online Users  
+            Online Users
           </div>
           <div class="card-body">
             Online Users Go here
@@ -30,17 +30,17 @@
         </div>
       </div> <!-- Online Users (col-md-2)-->
 
-      
-          <div class="online-users-togg online-users">
-            <div class="card">
-              <div class="card-header">
-                Online Users
-              </div>
-              <div class="card-body">
-                Online Users Go here
-              </div>
-            </div>
+      <!-- this is the div for online users the button calls when the screen is small -->
+      <div class="online-users-togg online-users">
+        <div class="card">
+          <div class="card-header">
+            Online Users
           </div>
+          <div class="card-body">
+            Online Users Go here
+          </div>
+        </div>
+      </div>
 
       <div class="col-md-9 text-center col-sm-12">
         <div class="jumbotron jumbotron-fluid">
@@ -53,15 +53,15 @@
       </div> <!-- chat window div (col-md-8) -->
 
       <!-- <div class="d-none task-bar"> -->
-        <div class="card task-bar">
-          <div class="card-header">
-            Task Bar
-          </div>
-          <div class="card-body">
-            Tasks go here
-          </div>
+      <div class="card task-bar">
+        <div class="card-header">
+          Task Bar
         </div>
-      </div> <!-- Taskbar -->
+        <div class="card-body">
+          Tasks go here
+        </div>
+      </div>
+    </div> <!-- Taskbar -->
     <!-- </div> first row div -->
 
     <div class="fixed-bottom footer" id="footer">
@@ -87,7 +87,10 @@
                 <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-users"></i></i></button>
               </div>
               <div class="col-4 text-center">
+
                 <button id= "message-submit"type="button" class="btn btn-primary btn-lg"><i class="far fa-share-square"></i></button>
+
+
               </div>
             </div>
           </div>
