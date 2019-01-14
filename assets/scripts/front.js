@@ -1,3 +1,4 @@
+var shiftOn = false;
 //function for the document
 $(document).ready(function(){
 
@@ -16,9 +17,7 @@ $(document).ready(function(){
     console.log("usersButton");
      $(".online-users-togg").toggle();
    });
-
-}); //curly for $(document).ready(function()
-var shiftOn = false;
+ //curly for $(document).ready(function()
 
 $("#message-submit").on("click", function () {
   event.preventDefault();
@@ -46,12 +45,14 @@ $("#message-submit").on("click", function () {
   $(document).keydown(function(event){
     if(event.keyCode === 16){
       shiftOn = true;
+      console.log(shiftOn);
     }
   });
 
   $(document).keyup(function(event){
     if(event.keyCode === 16){
     shiftOn = false;
+    console.log(shiftOn);
     }
   });
 
@@ -60,19 +61,21 @@ $("#message-submit").on("click", function () {
   $(document).keyup(function(eventE) {
   
 
-    if (eventE.keyCode === 13 && shiftOn === false) {
+    if (eventE.keyCode === 13 && shiftOn) {
       event.preventDefault();
 
       console.log(eventE.keyCode);
       //if input field is empty give an indicator
-      if($("#textInput").val() === ""){
+      if($("#textInput").text() === ""){
         $("#textInput").addClass("border border-danger");
+        console.log(shiftOn);
       }
       
       //run if there is user input
       else {
 
         //remove highlight on message inoput field
+        console.log(shiftOn);
         $("#textInput").removeClass("border border-danger");
     
         var inputField = $("#textInput");
@@ -83,3 +86,5 @@ $("#message-submit").on("click", function () {
       }
     }
   });
+
+});

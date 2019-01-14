@@ -37,7 +37,7 @@ database.ref().once("value", function (snapshot) {
 // get last message typed
 chatLog.orderByChild("index").on("child_added", function (snapshot) {
   //console.log(snapshot.val().index);
-  $(".container-jumbo").append("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div>");
+  $(".container-jumbo").append("<div id = '"+snapshot.val().index +"'class='message-div p-2 mb-4 bg-primary text-white animated pulse'><div>" + snapshot.val().message + "</div>");
 });
 
 // get move first message
