@@ -47,13 +47,13 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   var message = snapshot.val().message;
   //console.log(snapshot.val().index);
   if (snapshot.val().type === "text") {
-    $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + message + "</div>");
+    $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse animate zoomIn'>" + message + "</div>");
   } else if (snapshot.val().type === "youtube") {
-    $(".container-jumbo").prepend("<div id = '" + index + "'</div>");
+    $(".container-jumbo").prepend("<div id = '" + index + "'></div>");
     createYoutube(index, message)
   }
   else if(snapshot.val().type === "tweet"){
-    $(".container-jumbo").prepend("<div id = '" + index + "'</div>");
+    $(".container-jumbo").prepend("<div id = '" + index + "'></div>");
     createTweet(index, message);
   }
   
