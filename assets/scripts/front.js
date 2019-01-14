@@ -23,10 +23,8 @@ var shiftOn = false;
 
 $("#message-submit").on("click", function () {
   event.preventDefault();
-  
-
   //if input field is empty give an indicator
-  if ($("#textInput").val() === "") {
+  if ($("#textInput").val().length === 0) {
     $("#textInput").addClass("border border-danger");
   }
 
@@ -67,10 +65,10 @@ $(document).keyup(function (eventE) {
 
   if (eventE.keyCode === 13 && shiftOn === false) {
     event.preventDefault();
-
-    console.log(eventE.keyCode);
     //if input field is empty give an indicator
-    if ($("#textInput").val() === "") {
+    console.log($("#textInput").val().length );
+    if ($("#textInput").val().length === 1) {
+      $("#textInput").val("");
       $("#textInput").addClass("border border-danger");
     }
 
