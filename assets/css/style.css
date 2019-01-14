@@ -11,7 +11,8 @@ html, body {
 }
 
 .card-header {
-  font-family: "arial black", "imact", "sans-serif";
+  font-family: "Lobster", "arial black", "imact", "sans-serif";
+  font-weight: "heavy";
 }
 
 .jumbotron {
@@ -77,9 +78,19 @@ html, body {
   margin-right: 10px;
 }
 
-/* .form-control {
-  margin-left: 10px;
-} */
 .container-fluid {
   padding: 0;
+}
+
+.task-bar{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.online-users-togg{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 5;
 }

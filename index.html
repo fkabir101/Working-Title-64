@@ -8,7 +8,7 @@
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Working Title 64</title>
 </head>
@@ -18,7 +18,7 @@
   <div class="container-body">
     <!-- the three columns, so everything except the footer -->
     <div class="row h-100">
-      <div class="col-3 d-none d-md-block">
+      <div class="col-3 d-none d-md-block online-users">
         <div class="card">
           <div class="card-header">
             Online Users  
@@ -28,6 +28,18 @@
           </div>
         </div>
       </div> <!-- Online Users (col-md-2)-->
+
+      
+          <div class="online-users-togg online-users">
+            <div class="card">
+              <div class="card-header">
+                Online Users
+              </div>
+              <div class="card-body">
+                Online Users Go here
+              </div>
+            </div>
+          </div>
 
       <div class="col-md-9 text-center col-sm-12">
         <div class="jumbotron jumbotron-fluid">
@@ -39,8 +51,8 @@
         </div>
       </div> <!-- chat window div (col-md-8) -->
 
-      <div class="d-none">
-        <div class="card">
+      <!-- <div class="d-none task-bar"> -->
+        <div class="card task-bar">
           <div class="card-header">
             Task Bar
           </div>
@@ -48,40 +60,38 @@
             Tasks go here
           </div>
         </div>
-      </div> <!-- Taskbar (col-md-2) -->
-    </div> <!-- first row div -->
-
-
+      </div> <!-- Taskbar -->
+    <!-- </div> first row div -->
 
     <div class="fixed-bottom footer" id="footer">
       <div class="container-fluid">
         <div class="row">
-           
-        <form class="container-fluid col-lg-10 col-md-12">
-          <div class="form-group">
+
+          <form class="container-fluid col-lg-10 col-md-12">
+            <div class="form-group">
               <div class="row">
                 <div class="col-1"></div>
-            <textarea class="form-control col-10" id="textInput" rows="1" placeholder="Write Your Message Here!"></textarea>
-            <div class="col-1"></div>
+                <textarea class="form-control col-10" id="textInput" rows="1" placeholder="Write Your Message Here!"></textarea>
+                <div class="col-1"></div>
+              </div>
+            </div>
+          </form>
+
+          <div class="container-fluid col-lg-2 col-md-12">
+            <div class="row">
+              <div class="col-4 text-center">
+                <button type="button" class="btn btn-danger btn-lg" id="taskButton"><i class="fas fa-tasks"></i></i></button>
+              </div>
+              <div class="d-block d-md-none col-4 text-center">
+                <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-users"></i></i></button>
+              </div>
+              <div class="col-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg"><i class="far fa-share-square"></i></button>
+              </div>
+            </div>
           </div>
         </div>
-        </form>
-
-        <div class="container-fluid col-lg-2 col-md-12">
-          <div class = "row">
-            <div class="col-4 text-center">
-                <button type="button" class="btn btn-danger btn-lg"><i class="fas fa-tasks"></i></i></button>
-            </div>
-            <div class="d-block d-md-none col-4 text-center">
-                <button type="button" class="btn btn-warning btn-lg"><i class="fas fa-users"></i></i></button>
-              </div>
-              <div class = "col-4 text-center">
-              <button type="button" class="btn btn-primary btn-lg" id = "message-submit"><i class="far fa-share-square"></i></button>
-            </div>
-            </div>
-            </div>
       </div>
-    </div>
       <!-- footer div -->
     </div>
 
