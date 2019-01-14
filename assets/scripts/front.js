@@ -4,7 +4,11 @@ $(document).ready(function () {
   //this is to hide the taskbar when the page loads
   $(".task-bar").hide();
   $(".online-users-togg").hide();
-  // $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
+  
+
+  // //this hides the page and displays the login button on page load
+  // $(".container-body").hide();
+  
 
   //this function makes the task button show and hide and show the task div
   $("#taskButton").click(function () {
@@ -88,3 +92,23 @@ $(document).keyup(function (eventE) {
     }
   }
 });
+
+// this is the sign in for the google button
+// function onSuccess(googleUser) {
+//   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+// }
+// function onFailure(error) {
+//   console.log(error);
+// }
+// function renderButton() {
+//   console.log("render");
+//   gapi.signin2.render('my-signin2', {
+//     'scope': 'profile email',
+//     'width': 240,
+//     'height': 50,
+//     'longtitle': true,
+//     'theme': 'dark',
+//     'onsuccess': onSuccess,
+//     'onfailure': onFailure
+//   });
+// }

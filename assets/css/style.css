@@ -57,6 +57,7 @@ html, body {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse;
+  text-align: left;
 }
 
 .message-div {
@@ -108,6 +109,14 @@ html, body {
       display: none;
   }
 }
+
+/* this function will have somehting happen when the screen is small */
+@media only screen and (max-width: 991px) {
+  .container-jumbo {
+    height: 90%;
+  }
+}
+
 
 /* CSS animate */
 
