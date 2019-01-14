@@ -50,7 +50,8 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
     $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + message + "</div>");
   } else if (snapshot.val().type === "youtube") {
     $(".container-jumbo").prepend("<div id = '" + index + "'</div>");
-    createYoutube(index, message)
+    $(`#${index}`).append("<div id = '" + index + "Player'</div>");
+    createYoutube(index+"Player", message);
   }
   else if(snapshot.val().type === "tweet"){
     $(".container-jumbo").prepend("<div id = '" + index + "'</div>");

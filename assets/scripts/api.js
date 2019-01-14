@@ -12,7 +12,9 @@ function createYoutube(divId, videoId) {
     }
   });
   // The API will call this function when the video player is ready Required for youtube player
-  function onPlayerReady(event) {}
+  function onPlayerReady(event) {
+    event.target.stopVideo();
+  }
 
 
   // variable and function to handle the youtube player
