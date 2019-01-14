@@ -50,11 +50,16 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
     $(".container-jumbo").prepend("<div id = '" + index + "'class='message-div p-2 mb-4 bg-primary text-white animated pulse animate zoomIn'>" + message + "</div>");
   } else if (snapshot.val().type === "youtube") {
     $(".container-jumbo").prepend("<div id = '" + index + "'></div>");
-    createYoutube(index, message)
+    $(`#${index}`).append("<div id = '" + index + "Player'></div>");
+    createYoutube(index+"Player", message)
   }
   else if(snapshot.val().type === "tweet"){
     $(".container-jumbo").prepend("<div id = '" + index + "'></div>");
     createTweet(index, message);
+  }
+  else if(snapshot.val().type === "giph"){    
+    $(".container-jumbo").prepend("<div id = '" + index + "'></div>");
+    getGiph(message, index);
   }
   
   //this function starts the display scrolled to the bottom of the page
@@ -82,6 +87,10 @@ function writeFirebase(message) {
   else if(message.includes(twitter) && message.includes("status")){
     message = message.split("status/").pop();
     type = "tweet";
+  }
+  else if(message.includes("/giph")){
+    message = message.split("giph").pop();
+    type = "giph";
   }
   else {
     type = "text";
