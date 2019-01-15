@@ -1,6 +1,8 @@
 var shiftOn = false;
+var users = [];
 //function for the document
 $(document).ready(function () {
+
 
   $(".container-jumbo").html("<h4 class=text-center>" + moment().format("MMM Do YY") + "<h4>");
   //this is to hide the taskbar when the page loads

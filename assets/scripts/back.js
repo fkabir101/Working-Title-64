@@ -25,10 +25,15 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var youtube = "youtube.com/watch";
 var twitter = "twitter.com";
 
+var connectionsRef = database.ref("/connections");
+var connectedRef = database.ref(".info/connected");
+var users = database.ref("/users");
+
 
 // Run on load to get message counter
 database.ref().once("value", function (snapshot) {
   // Check to see if message counter exists
+
   if (snapshot.child("messageCounter").exists()) {
     messageCounter = snapshot.val().messageCounter;
   }
@@ -37,7 +42,6 @@ database.ref().once("value", function (snapshot) {
   //   writeFirebase(String(i));
   // }
   // console.log("Counter " + messageCounter);
-
 });
 
 // get last message typed
@@ -47,21 +51,22 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   var time = snapshot.val().time;
   var message = snapshot.val().message;
   var timeConverted = moment(time, "X").calendar();
+  var userName = snapshot.val().name;
   //console.log(snapshot.val().index);
   if (snapshot.val().type === "text") {
-    $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>"+timeConverted+"</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light m-2 font-italic'>" + userName + ": "+ timeConverted + "</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
 
-    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light m-2 font-italic'>"+ userName + ": "+ timeConverted+"</div></div>");
     $(`#${index}`).append("<div id = '" + index + "Player'></div>");
     createYoutube(index+"Player", message);
   }
   else if(snapshot.val().type === "tweet"){
-    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light m-2 font-italic'>" + userName + ": "+timeConverted+"</div></div>");
     createTweet(index, message);
   }
   else if(snapshot.val().type === "giph"){    
-    $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light m-2 font-italic'>"+ userName + ": " +timeConverted+"</div></div>");
     getGiph(message, index);
   }
   //this function starts the display scrolled to the bottom of the page
@@ -137,10 +142,22 @@ $(document).ready(function () {
     console.log(result);
     // The signed-in user info.
     var user = result.user;
+    console.log(user);
     // ...
 
     //this stores the user's name from google in a variable
-    user.displayName = screenName;
+    screenName = user.displayName;
+    console.log(screenName);
+
+    // var con = {
+    //   connected: true,
+    //   name: screenName
+    // };
+    // console.log(screenName);
+    // connectionsRef.push(con);
+    
+
+
 
   }).catch(function(error) {
     // Handle Errors here.

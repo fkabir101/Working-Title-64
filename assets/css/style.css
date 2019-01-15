@@ -19,7 +19,8 @@ html, body {
   margin: 0;
   font-family: "verdana", "arial", "sans";
   height: 100%;
-  background-color: darkgray;
+  background-color: #000033;
+
 }
 
 .col-3 {
@@ -38,7 +39,7 @@ html, body {
 }
 
 .footer {
-  background-color: gray;
+  background-color: #000033;
 }
 
 .form-group {
@@ -58,6 +59,7 @@ html, body {
   display: flex;
   flex-direction: column-reverse;
   text-align: left;
+  background-color: #fcfdff;
 }
 
 .message-div {
