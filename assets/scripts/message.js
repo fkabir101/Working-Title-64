@@ -36,6 +36,8 @@ $(document).ready(function(){
 
         //store message in a variable
         var msg= {
+          user: "user",
+          time: moment().format('LT'),
           message: $("#message-input").val().trim()
         };
   
@@ -91,6 +93,8 @@ $(document).ready(function(){
 
         //store message in a variable
         var msg= {
+          user: "user",
+          time: moment().format('LT'),
           message: $("#message-input").val().trim()
         };
   
@@ -112,7 +116,7 @@ $(document).ready(function(){
   
     console.log("Message: " + snapshot.val().message);
 
-    $(".messages-display").append("<div class='message-div p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div><br>");
+    $(".messages-display").append("<div class='text-center'>"+ snapshot.val().user + ": " + snapshot.val().time+"</div><div class='message-div d-inline-flex p-2 mb-4 bg-primary text-white animated pulse'>" + snapshot.val().message + "</div><br>");
   });
 
 });

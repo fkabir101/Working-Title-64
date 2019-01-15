@@ -62,6 +62,14 @@ html, body {
 
 .message-div {
   overflow-wrap: break-word; 
+  text-align: left;
+  width: fit-content;
+}
+
+.msg-block:hover{
+  background-color: white;
+  opacity: 0.5;
+
 }
 
 .inputBar{
@@ -107,6 +115,10 @@ html, body {
   top: 2px;
   left: 2px;
   z-index: 5; 
+}
+
+.time{
+  font-size: 12px;
 }
 
 /* this function will hide the online users toggle box when the screen is large */

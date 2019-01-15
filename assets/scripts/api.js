@@ -1,4 +1,5 @@
 var player;
+var imageUrl;
 
 // function to create embeded video
 function createYoutube(divId, videoId) {
@@ -33,16 +34,30 @@ function createYoutube(divId, videoId) {
 }
 
 // Twitter stuff
-function createTweet(id, status){
+function createTweet(id, status) {
   var tweet = document.getElementById(String(id));
   var tweetId = status;
 
   twttr.widgets.createTweet(
-    tweetId, tweet, 
-    {
-      conversation : 'none',    // or all
-      cards        : 'hidden',  // or visible 
-      linkColor    : '#cc0000', // default is blue
-      theme        : 'dark'    // or dark
+    tweetId, tweet, {
+      conversation: 'none', // or all
+      cards: 'hidden', // or visible 
+      linkColor: '#cc0000', // default is blue
+      theme: 'dark' // or dark
     });
+}
+
+// Giphy Api call
+function getGiph(search, index) {
+  var queryUrl =  `https://api.giphy.com/v1/gifs/search?q=${search}
+  &api_key=ra70xorxvoPiBArlJQBpj3SmfmXSw2sX&limit=1`;
+  $.ajax({
+    url: queryUrl,
+    method: "GET",
+  }).then(function (response) {
+    var imageUrl = response.data[0].images.fixed_height.url;;
+    var image = $("<img>");
+    image.attr("src", imageUrl);
+    $(`#${index}`).append(image);
+  });
 }
