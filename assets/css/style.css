@@ -94,6 +94,12 @@ html, body {
   position: absolute;
   top: 2px;
   right: 2px;
+  max-width: 300px;
+  overflow-y: scroll;
+}
+
+ #taskClear {
+  float: right;
 }
 
 .online-users-togg{
