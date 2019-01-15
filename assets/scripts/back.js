@@ -139,6 +139,8 @@ $(document).ready(function () {
     var user = result.user;
     // ...
 
+    console.log (user);
+
     //this stores the user's name from google in a variable
     user.displayName = screenName;
 
@@ -156,4 +158,15 @@ $(document).ready(function () {
 });
 
 
+//revome this !!!!!!!!!!!!!!!!!!!!!!
+var taskCounter = 0
+var testingVariableForDueDate
 
+//this function was used to add cards to the taskbar
+ $("#message-submit").on("click", function () {
+
+  var f = "<div class='card task-inner'><div class='card-header cardHeadInner'>TASKDATE<button type='button' class='btn btn-outline-success btn-sm' id='taskClearCOUNTER'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body' id='taskBodyCOUNTER'>TASKTEXT</div></div>"
+
+  $("#taskBody").append(f);
+
+ });

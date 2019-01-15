@@ -10,9 +10,19 @@ html, body {
   font-family: "arial", "verdana", "sans";
 }
 
-.card-header {
+#cardHeadOuter {
   font-family: "Lobster", "arial black", "imact", "sans-serif";
   font-weight: "heavy";
+}
+
+.cardHeadInner {
+  font-family: "arial", "imact", "sans-serif";
+}
+
+.task-inner
+
+.btn-outline-success {
+  margin-left: 20px;
 }
 
 .jumbotron {
@@ -103,11 +113,14 @@ html, body {
   top: 2px;
   right: 2px;
   max-width: 300px;
-  overflow-y: scroll;
 }
 
  #taskClear {
   float: right;
+}
+
+#taskBody {
+  overflow-y: scroll;
 }
 
 .online-users-togg{
