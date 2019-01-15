@@ -74,7 +74,6 @@ $(document).keyup(function (eventE) {
 
    // console.log(eventE.keyCode);
     //if input field is empty give an indicator
-    console.log($("#textInput").val().length );
     if ($("#textInput").val().length === 1) {
       $("#textInput").val("");
       $("#textInput").addClass("border border-danger");
