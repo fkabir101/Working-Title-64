@@ -51,8 +51,9 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   if (snapshot.val().type === "text") {
     $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>"+timeConverted+"</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
-    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'</div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
-    $(`#${index}`).append("<div id = '" + index + "Player'</div>");
+
+    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    $(`#${index}`).append("<div id = '" + index + "Player'></div>");
     createYoutube(index+"Player", message);
   }
   else if(snapshot.val().type === "tweet"){
@@ -63,7 +64,6 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
     $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
     getGiph(message, index);
   }
-  
   //this function starts the display scrolled to the bottom of the page
   $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
 
@@ -80,15 +80,15 @@ function writeFirebase(message) {
   // remove &api call
   if (message.includes(youtube)) {
     message = message.split("v=").pop();
-    if(message.includes("&")){
+    if (message.includes("&")) {
       var messageSplit = message.split("&");
       message = messageSplit[0];
     }
     type = "youtube";
-  } 
-  else if(message.includes(twitter) && message.includes("status")){
+  } else if (message.includes(twitter) && message.includes("status")) {
     message = message.split("status/").pop();
     type = "tweet";
+
   }
   else if(message.includes("/giph")){
     message = message.split("giph").pop();
@@ -102,7 +102,8 @@ function writeFirebase(message) {
     time: moment().format("X"),
     type: type,
     message: message,
-    index: messageCounter
+    index: messageCounter,
+    name: screenName
   }
   messageCounter++;
 
@@ -115,4 +116,44 @@ function writeFirebase(message) {
   database.ref("chatLog").push(messageObject);
   database.ref().child("messageCounter").set(messageCounter);
 }
+
+
+// this defines a variable to be redefined upon login with the user's name
+var screenName = null;
+
+// this handles the sign in through google
+
+$(document).ready(function () {
+  
+  //creating instance of google provider object
+  var provider = new firebase.auth.GoogleAuthProvider();
+  
+  //add scope
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    console.log(result);
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+
+    //this stores the user's name from google in a variable
+    user.displayName = screenName;
+
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  
+});
+
+
 
