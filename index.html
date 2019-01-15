@@ -24,11 +24,11 @@
     <div class="row h-100">
       <div class="col-3 d-none d-md-block online-users">
         <div class="card">
-          <div class="card-header onlineHead">
-            Online Users
+          <div class="card-header onlineHead" id="cardHeadOuter">
+            Tasks
           </div>
-          <div class="card-body">
-            Online Users Go here
+          <div class="card-body taskBody">
+            
           </div>
         </div>
       </div> <!-- Online Users (col-md-2)-->
@@ -36,11 +36,10 @@
       <!-- this is the div for online users the button calls when the screen is small -->
       <div class="online-users-togg online-users animated lightSpeedIn">
         <div class="card">
-          <div class="card-header onlineHead">
-            Online Users
+          <div class="card-header onlineHead" id=cardHeadOuter>
+            Tasks
           </div>
-          <div class="card-body">
-            Online Users Go here
+          <div class="card-body taskBody">
           </div>
         </div>
       </div>
@@ -56,17 +55,17 @@
       </div> <!-- chat window div (col-md-8) -->
 
      
-      <div class="card task-bar animated lightSpeedIn">
+      <!-- <div class="card task-bar animated lightSpeedIn">
         <div class="card-header" id="cardHeadOuter">
           
-          Tasks
+          Tasks -->
            <!-- <button type="button" class="btn btn-outline-success btn-sm" id="taskClear">
             <i class="fas fa-clipboard-check"></i></button> -->
-        </div>
+        <!-- </div>
         <div class="card-body" id="taskBody">
           
         </div>
-      </div>
+      </div> -->
     </div> <!-- first row div -->
     
 
@@ -86,15 +85,15 @@
 
           <div class="container-fluid col-lg-2 col-md-12">
             <div class="row">
-              <div class="col-4 text-center">
-                <button type="button" class="btn btn-danger btn-lg" id="taskButton"><i class="fas fa-tasks"></i></i></button>
+              <div class="d-block d-md-none col-4 text-center">
+                <button type="button" class="btn-lg btn-danger btn-lg" id="taskButton"><i class="fas fa-tasks"></i></i></button>
               </div>
               <div class="d-block d-md-none col-4 text-center">
-                <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-users"></i></i></button>
+                <!-- <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-users"></i></i></button> -->
               </div>
               <div class="col-4 text-center">
 
-                <button id= "message-submit"type="button" class="btn btn-primary btn-lg"><i class="far fa-share-square"></i></button>
+                <button id= "message-submit"type="button" class="btn-lg btn-primary btn-lg"><i class="far fa-share-square"></i></button>
                 <!-- <button id= "loginButton"type="button" class="btn btn-secondary btn-lg"><i class="far fa-share-square"></i></button> -->
 
 

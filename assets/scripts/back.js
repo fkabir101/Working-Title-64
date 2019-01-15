@@ -163,6 +163,6 @@ $("#message-submit").on("click", function () {
 
   var f = "<div class='card task-inner'><div class='card-header cardHeadInner'>TASKDATE<button type='button' class='btn btn-outline-success btn-sm' id='taskClearCOUNTER'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body' id='taskBodyCOUNTER'>TASKTEXT</div></div>"
 
-  $("#taskBody").append(f);
+  $(".taskBody").append(f);
 
 });

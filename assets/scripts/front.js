@@ -8,10 +8,6 @@ $(document).ready(function () {
   $(".online-users-togg").hide();
 
 
-  // //this hides the page and displays the login button on page load
-  // $(".container-body").hide();
-
-
   //this function makes the task button show and hide and show the task div
   $("#taskButton").click(function () {
     // console.log("taskButton ");
@@ -19,7 +15,7 @@ $(document).ready(function () {
   });
 
   //this function makes the user button hide and show the users online div
-  $("#usersButton").click(function () {
+  $("#taskButton").click(function () {
     // console.log("usersButton");
     $(".online-users-togg").toggle();
   });
