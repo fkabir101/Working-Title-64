@@ -10,9 +10,19 @@ html, body {
   font-family: "arial", "verdana", "sans";
 }
 
-.card-header {
+#cardHeadOuter {
   font-family: "Lobster", "arial black", "imact", "sans-serif";
   font-weight: "heavy";
+}
+
+.cardHeadInner {
+  font-family: "arial", "imact", "sans-serif";
+}
+
+.task-inner
+
+.btn-outline-success {
+  margin-left: 20px;
 }
 
 .jumbotron {
@@ -57,6 +67,7 @@ html, body {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse;
+  text-align: left;
 }
 
 .message-div {
@@ -101,6 +112,15 @@ html, body {
   position: absolute;
   top: 2px;
   right: 2px;
+  max-width: 300px;
+}
+
+ #taskClear {
+  float: right;
+}
+
+#taskBody {
+  overflow-y: scroll;
 }
 
 .online-users-togg{
@@ -120,6 +140,14 @@ html, body {
       display: none;
   }
 }
+
+/* this function will have somehting happen when the screen is small */
+@media only screen and (max-width: 991px) {
+  .container-jumbo {
+    height: 90%;
+  }
+}
+
 
 /* CSS animate */
 
