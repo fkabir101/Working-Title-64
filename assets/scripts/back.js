@@ -54,18 +54,19 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   var time = snapshot.val().time;
   var message = snapshot.val().message;
   var timeConverted = moment(time, "X").calendar();
+  var name = snapshot.val().name;
   if (snapshot.val().type === "text") {
-    $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>" + timeConverted + "</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>" +name+" "+ timeConverted + "</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
 
-    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>" +name+" "+ timeConverted + "</div></div>");
     $(`#${index}`).append("<div id = '" + index + "Player'></div>");
     createYoutube(index + "Player", message);
   } else if (snapshot.val().type === "tweet") {
-    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>" + name+" "+timeConverted + "</div></div>");
     createTweet(index, message);
   } else if (snapshot.val().type === "giph") {
-    $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
+    $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>" + name+" "+timeConverted + "</div></div>");
     getGiph(message, index);
   }
 
@@ -116,7 +117,12 @@ function writeFirebase(message) {
   } else if (message.includes("/rocketship")) {
     message = "<=======3";
     type = "text";
-  } else if (message.includes("/t")) {
+  }
+  else if(message.includes("/shrug")){
+    message = " ¯\\_(ツ)_/¯";
+    type = "text";
+  } 
+  else if (message.includes("/t")) {
     message = message.split("/t").pop();
     if (message.includes("by")){
       task = message.split("by")[0].trim();
@@ -126,21 +132,14 @@ function writeFirebase(message) {
   } else {
     type = "text";
   }
-
-  var messageObject = {
-    time: moment().format("X"),
-    type: type,
-    message: message,
-    index: messageCounter,
-    name: screenName
-  }
   messageCounter++;
   if (type !== "task") {
     var messageObject = {
       time: moment().format("X"),
       type: type,
       message: message,
-      index: messageCounter
+      index: messageCounter,
+      name: screenName
     }
     messageCounter++;
 
