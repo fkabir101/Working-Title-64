@@ -183,8 +183,9 @@ $(document).ready(function () {
     // The signed-in user info.
     var user = result.user;
     // ...
-
+    console.log(result);
     //this stores the user's name from google in a variable
+    screenName = user.displayName;
     
 
   }).catch(function (error) {
