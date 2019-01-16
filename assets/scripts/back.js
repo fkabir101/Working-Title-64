@@ -86,11 +86,6 @@ taskLog.orderByChild("index").on("child_added", function(snapshot){
 });
 
 
-// $("#message-submit").on("click", function () {
-//   event.preventDefault();
-//   createTask(index, taskArray[index], taskDateArray[index]);
-//   });
-
 // get move first message
 chatLog.orderByChild("index").limitToFirst(1).on("child_added", function (snapshot) {
   firstMessageRef = database.ref(`chatLog/${snapshot.key}`);
