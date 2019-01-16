@@ -90,13 +90,13 @@ $(document).keyup(function (eventE) {
   }
 });
 
-// // clear task
-// $(".taskBody").on("click", ".clearTask", function () {
-//   event.preventDefault();
-//   var index = $(this).attr("index");
-//   database.ref(taskRefrence[index]).remove();
-//   $(`#task${index}`).remove();
-  
-// });
+// clear task
+$(".taskBody").on("click", ".clearTask", function () {
+  event.preventDefault();
+  var index = $(this).attr("index");
+  database.ref(taskRefrence[index]).remove();
+  $(`#task${index}`).remove();
+
+});
 
 

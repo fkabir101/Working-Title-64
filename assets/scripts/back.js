@@ -25,7 +25,6 @@ var taskCounter = 0;
 var taskArray = [];
 var taskDateArray = [];
 var taskRefrence = [];
-var usersOnline = ["Alan", "Fahim", "Chris"];
 
 // variables for youtube player
 var tag = document.createElement('script');
@@ -84,7 +83,6 @@ taskLog.orderByChild("index").on("child_added", function(snapshot){
 
   createTask(index, taskArray[index], taskDateArray[index])
 });
-
 
 // get move first message
 chatLog.orderByChild("index").limitToFirst(1).on("child_added", function (snapshot) {
@@ -179,12 +177,9 @@ $(document).ready(function () {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
-    //console.log(result);
     // The signed-in user info.
     var user = result.user;
     // ...
-
-    //console.log(user);
 
     //this stores the user's name from google in a variable
     
@@ -200,11 +195,6 @@ $(document).ready(function () {
     // ...
   });
 
-  screenName = toString(user.displayName);
-   usersOnline.push(screenName);
-   console.log(screenName);
-   $('p').html(usersOnline.join('<br />')).appendTo(".usersOnline");
-      console.log(usersOnline);
 });
 
 //this function was used to add cards to the taskbar
