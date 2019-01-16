@@ -95,6 +95,14 @@ $(document).keyup(function (eventE) {
   }
 });
 
+// clear task
+$("#taskBody").on("click", ".clearTask", function () {
+  event.preventDefault();
+  var index = $(this).attr("index");
+  database.ref(taskRefrence[index]).remove();
+  $(`#task${index}`).remove();
+  
+});
 
 //this function sets the width of the jumbotron so the text does not go off screen
 $(".msg-block").css({
