@@ -105,6 +105,6 @@ $("#taskBody").on("click", ".clearTask", function () {
 });
 
 //this function sets the width of the jumbotron so the text does not go off screen
-$(".msg-block").css({
-  width: container - jumbo.width
-})
+// $(".msg-block").css({
+//   width: container - jumbo.width
+// })
