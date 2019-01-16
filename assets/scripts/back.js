@@ -10,12 +10,21 @@ var config = {
 firebase.initializeApp(config);
 
 // Declare variables
+
+// Firebase Variables
 database = firebase.database();
 chatLog = firebase.database().ref("chatLog");
+taskLog = firebase.database().ref("taskLog");
+// Message Variables
 var messageCounter = 0;
 var maxMessageCount = 10;
 var firstMessageRef;
 var firstMessageIndex;
+// Task Variables
+var taskCounter = 0;
+var taskArray = [];
+var taskDateArray = [];
+var taskRefrence = [];
 
 // variables for youtube player
 var tag = document.createElement('script');
@@ -32,12 +41,9 @@ database.ref().once("value", function (snapshot) {
   if (snapshot.child("messageCounter").exists()) {
     messageCounter = snapshot.val().messageCounter;
   }
-  // writeFirebase("https://www.youtube.com/watch?v=dz2o_bVkgPA");
-  // for (var i = 0; i < 15; i++) {
-  //   writeFirebase(String(i));
-  // }
-  // console.log("Counter " + messageCounter);
-
+  if (snapshot.child("taskCounter").exists()) {
+    taskCounter = snapshot.val().taskCounter;
+  }
 });
 
 // get last message typed
@@ -47,7 +53,6 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
   var time = snapshot.val().time;
   var message = snapshot.val().message;
   var timeConverted = moment(time, "X").calendar();
-  //console.log(snapshot.val().index);
   if (snapshot.val().type === "text") {
     $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>" + timeConverted + "</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
@@ -62,9 +67,22 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
     $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
     getGiph(message, index);
   }
+
   //this function starts the display scrolled to the bottom of the page
   $(".container-jumbo").scrollTop($(".container-jumbo")[0].scrollHeight);
 
+});
+
+// Run this whenever a new task is created
+taskLog.orderByChild("index").on("child_added", function(snapshot){
+  var index = snapshot.val().index;
+  taskArray.push(snapshot.val().task);
+  taskDateArray.push(snapshot.val().dueDate);
+  taskRefrence.push(`taskLog/${snapshot.key}`);
+
+  console.log(taskArray[index]);
+  console.log(taskDateArray[index]);
+  console.log(taskRefrence[index]);
 });
 
 // get move first message
@@ -90,6 +108,17 @@ function writeFirebase(message) {
   } else if (message.includes("/giph")) {
     message = message.split("giph").pop();
     type = "giph";
+
+  } else if (message.includes("/rocketship")) {
+    message = "<=======3";
+    type = "text";
+  } else if (message.includes("/t")) {
+    message = message.split("/t").pop();
+    if (message.includes("by")){
+      task = message.split("by")[0].trim();
+      taskDate = message.split("by")[1].trim();
+      type = "task";
+    }
   } else {
     type = "text";
   }
@@ -102,15 +131,43 @@ function writeFirebase(message) {
     name: screenName
   }
   messageCounter++;
+=======
+  if (type !== "task") {
+    var messageObject = {
+      time: moment().format("X"),
+      type: type,
+      message: message,
+      index: messageCounter
+    }
+    messageCounter++;
 
-  //Remove messages
-  if (messageCounter > maxMessageCount) {
-    $(`#${firstMessageIndex}`).remove();
-    firstMessageRef.remove();
+    //Remove messages
+    if (messageCounter > maxMessageCount) {
+      $(`#${firstMessageIndex}`).remove();
+      firstMessageRef.remove();
+    }
+    // Push Variables to Firebase
+    database.ref("chatLog").push(messageObject);
+    database.ref().child("messageCounter").set(messageCounter);
   }
-  // Push Variables to Firebase
-  database.ref("chatLog").push(messageObject);
-  database.ref().child("messageCounter").set(messageCounter);
+  else{
+    if(moment().valueOf() < moment(taskDate, "M/D/YYYY HH:mm").valueOf()){
+      var taskObject = {
+        dueDate: moment(taskDate, "M/D/YYYY HH:mm").valueOf(),
+        task: task,
+        index: taskCounter
+      }
+      taskCounter++;
+      database.ref("taskLog").push(taskObject);
+      database.ref().child("taskCounter").set(taskCounter);
+    }
+  }
+}
+
+// function to create tasks
+function taks(task, date){
+  taskArray.push(task);
+  taskDateArray.push(date);
 }
 
 
@@ -164,5 +221,6 @@ $("#message-submit").on("click", function () {
   var f = "<div class='card task-inner'><div class='card-header cardHeadInner'>TASKDATE<button type='button' class='btn btn-outline-success btn-sm' id='taskClearCOUNTER'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body' id='taskBodyCOUNTER'>TASKTEXT</div></div>"
 
   $("#taskBody").append(f);
+
 
 });
