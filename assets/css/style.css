@@ -132,7 +132,7 @@ body {
   float: right;
 }
 
-#taskBody {
+.taskBody {
   overflow-y: scroll;
 }
 
@@ -141,6 +141,7 @@ body {
   top: 2px;
   left: 2px;
   z-index: 5;
+  width: 271px;
 }
 
 .time {

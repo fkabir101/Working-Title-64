@@ -17,7 +17,7 @@
 <body>
   <div id="my-signin2"></div>
 
-
+<!-- ==========THIS DIV WAS THE ONLINE USERS DIV, NOW IT'S THE FIXED TASK DIV ========================-->
   <!-- this is the div to display online users that is visable when the screen is large -->
   <div class="container-body">
     <!-- the three columns, so everything except the footer -->
@@ -25,21 +25,21 @@
       <div class="col-3 d-none d-md-block online-users">
         <div class="card">
           <div class="card-header onlineHead">
-            Online Users
+            Tasks
           </div>
-          <div class="card-body usersOnline">
+          <div class="card-body taskBody">
             
           </div>
         </div>
       </div> <!-- Online Users (col-md-2)-->
 
-      <!-- this is the div for online users the button calls when the screen is small -->
+      <!-- =================THIS DIV WAS THE ONLINE USERS DIV, NOW IT'S THE TOGGLE TASK DIV ========================-->
       <div class="online-users-togg online-users animated lightSpeedIn">
         <div class="card">
           <div class="card-header onlineHead">
-            Online Users
+            Tasks
           </div>
-          <div class="card-body usersOnline">
+          <div class="card-body taskBody">
             
           </div>
         </div>
@@ -55,20 +55,16 @@
         </div>
       </div> <!-- chat window div (col-md-8) -->
 
-     
+     <!-- ================THIS DIV WAS THE TASK DIV, NOW IT'S THE EMPTY DIV TO HOLD COMMANDS ==================-->
+     <!-- ===========================THIS IS THE DIV TO ADD COMMANDS TO!!!!!===================================== -->
       <div class="card task-bar animated lightSpeedIn">
-        <div class="card-header" id="cardHeadOuter">
-          
-          Tasks
-           <!-- <button type="button" class="btn btn-outline-success btn-sm" id="taskClear">
-            <i class="fas fa-clipboard-check"></i></button> -->
-        </div>
-        <div class="card-body" id="taskBody">
-          
+        <div class="card-header" id="cardHeadOuter">Commands</div>
+        <div class="card-body" id="commands">
+          PUT YOUR COMMANDS HERE
         </div>
       </div>
-    </div> <!-- Taskbar -->
-    <!-- </div> first row div -->
+    </div> <!-- first row div -->
+    
 
     <div class="fixed-bottom footer" id="footer">
       <div class="container-fluid">
@@ -87,10 +83,10 @@
           <div class="container-fluid col-lg-2 col-md-12">
             <div class="row">
               <div class="col-4 text-center">
-                <button type="button" class="btn btn-danger btn-lg" id="taskButton"><i class="fas fa-tasks"></i></i></button>
+                <button type="button" class="btn btn-danger btn-lg" id="taskButton"><i class="fas fa-code"></i></button>
               </div>
               <div class="d-block d-md-none col-4 text-center">
-                <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-users"></i></i></button>
+                <button type="button" class="btn btn-warning btn-lg" id="usersButton"><i class="fas fa-tasks"></i></button>
               </div>
               <div class="col-4 text-center">
 

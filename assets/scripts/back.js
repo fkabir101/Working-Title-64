@@ -77,14 +77,18 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
 // Run this whenever a new task is created
 taskLog.orderByChild("index").on("child_added", function(snapshot){
   var index = snapshot.val().index;
-  taskArray.push(snapshot.val().task);
-  taskDateArray.push(snapshot.val().dueDate);
-  taskRefrence.push(`taskLog/${snapshot.key}`);
+  taskArray[index] = snapshot.val().task;
+  taskDateArray[index] =snapshot.val().dueDate;
+  taskRefrence[index] = `taskLog/${snapshot.key}`;
 
-  console.log(taskArray[index]);
-  console.log(taskDateArray[index]);
-  console.log(taskRefrence[index]);
+  createTask(index, taskArray[index], taskDateArray[index])
 });
+
+
+// $("#message-submit").on("click", function () {
+//   event.preventDefault();
+//   createTask(index, taskArray[index], taskDateArray[index]);
+//   });
 
 // get move first message
 chatLog.orderByChild("index").limitToFirst(1).on("child_added", function (snapshot) {
@@ -123,6 +127,14 @@ function writeFirebase(message) {
     type = "text";
   }
 
+  var messageObject = {
+    time: moment().format("X"),
+    type: type,
+    message: message,
+    index: messageCounter,
+    name: screenName
+  }
+  messageCounter++;
   if (type !== "task") {
     var messageObject = {
       time: moment().format("X"),
@@ -131,7 +143,6 @@ function writeFirebase(message) {
       index: messageCounter
     }
     messageCounter++;
-
 
     //Remove messages
     if (messageCounter > maxMessageCount) {
@@ -143,9 +154,9 @@ function writeFirebase(message) {
     database.ref().child("messageCounter").set(messageCounter);
   }
   else{
-    if(moment().valueOf() < moment(taskDate, "M/D/YYYY HH:mm").valueOf()){
+    if(moment().valueOf() < moment(taskDate, "MM/DD/YYYY HH:mm").valueOf()){
       var taskObject = {
-        dueDate: moment(taskDate, "M/D/YYYY HH:mm").valueOf(),
+        dueDate: moment(taskDate, "MM/DD/YYYY HH:mm").valueOf(),
         task: task,
         index: taskCounter
       }
@@ -156,11 +167,6 @@ function writeFirebase(message) {
   }
 }
 
-// function to create tasks
-function taks(task, date){
-  taskArray.push(task);
-  taskDateArray.push(date);
-}
 
 
 // this defines a variable to be redefined upon login with the user's name
@@ -207,16 +213,11 @@ $(document).ready(function () {
       console.log(usersOnline);
 });
 
+//this function was used to add cards to the taskbar
+ function createTask(index, task, date) {
+  var convertedDate = moment(date).format("MM/DD/YYYY HH:mm");
+  var taskCard = `<div id = 'task${index}'class='card task-inner'><div class='card-header cardHeadInner'>${convertedDate}<button type='button' index = '${index}'class='btn btn-outline-success btn-sm clearTask'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body'>${task}</div></div>`
 
-// //revome this !!!!!!!!!!!!!!!!!!!!!!
-// var taskCounter = 0
-// var testingVariableForDueDate
+  $(".taskBody").append(taskCard);
 
-// //this function was used to add cards to the taskbar
-// $("#message-submit").on("click", function () {
-
-//   var f = "<div class='card task-inner'><div class='card-header cardHeadInner'>TASKDATE<button type='button' class='btn btn-outline-success btn-sm' id='taskClearCOUNTER'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body' id='taskBodyCOUNTER'>TASKTEXT</div></div>"
-
-//   $(".taskBody").append(f);
-
-//  });
+ }

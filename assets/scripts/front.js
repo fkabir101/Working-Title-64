@@ -3,18 +3,18 @@ var shiftOn = false;
 $(document).ready(function () {
 
   $(".container-jumbo").html("<h4 class=text-center>" + moment().format("MMM Do YY") + "<h4>");
-  //this is to hide the taskbar when the page loads
+  //this is to hide the toggling task bar and the commands when the page loads, formerly taskbar
   $(".task-bar").hide();
   $(".online-users-togg").hide();
 
 
-  //this function makes the task button show and hide and show the task div
+  //this function makes the task button show and hide and show the COMMANDS div
   $("#taskButton").click(function () {
     // console.log("taskButton ");
     $(".task-bar").toggle();
   });
 
-  //this function makes the user button hide and show the users online div
+  //this function makes the user button hide and show the toggle TASKS div
   $("#usersButton").click(function () {
     // console.log("usersButton");
     $(".online-users-togg").toggle();
@@ -89,3 +89,14 @@ $(document).keyup(function (eventE) {
     }
   }
 });
+
+// // clear task
+// $(".taskBody").on("click", ".clearTask", function () {
+//   event.preventDefault();
+//   var index = $(this).attr("index");
+//   database.ref(taskRefrence[index]).remove();
+//   $(`#task${index}`).remove();
+  
+// });
+
+
