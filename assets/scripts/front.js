@@ -6,11 +6,11 @@ $(document).ready(function () {
   //this is to hide the taskbar when the page loads
   $(".task-bar").hide();
   $(".online-users-togg").hide();
-  
+
 
   // //this hides the page and displays the login button on page load
   // $(".container-body").hide();
-  
+
 
   //this function makes the task button show and hide and show the task div
   $("#taskButton").click(function () {
@@ -48,7 +48,7 @@ $("#message-submit").on("click", function () {
     updateScroll();
   }
 
-  
+
 });
 
 //run only if shift key is held down
@@ -72,8 +72,9 @@ $(document).keyup(function (eventE) {
   if (eventE.keyCode === 13 && shiftOn === false) {
     event.preventDefault();
 
-   // console.log(eventE.keyCode);
+    // console.log(eventE.keyCode);
     //if input field is empty give an indicator
+
     if ($("#textInput").val().length === 1) {
       $("#textInput").val("");
       $("#textInput").addClass("border border-danger");
@@ -94,3 +95,8 @@ $(document).keyup(function (eventE) {
   }
 });
 
+
+//this function sets the width of the jumbotron so the text does not go off screen
+$(".msg-block").css({
+  width: container - jumbo.width
+})

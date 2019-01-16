@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   font-family: "comic sans MS";
   height: 100%;
@@ -15,11 +16,18 @@ html, body {
   font-weight: "heavy";
 }
 
+.onlineHead {
+  font-family: "Lobster", "arial black", "imact", "sans-serif";
+  font-weight: "heavy";
+}
+
 .cardHeadInner {
   font-family: "arial", "imact", "sans-serif";
 }
 
-.task-inner
+.task-inner {
+  margin-bottom: 10px;
+}
 
 .btn-outline-success {
   margin-left: 20px;
@@ -43,8 +51,8 @@ html, body {
 }
 
 .col-sm-12 {
-   margin: 0;
-   padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .footer {
@@ -57,32 +65,36 @@ html, body {
   margin-right: 10px;
 }
 
-.container-body{
+.container-body {
   width: 100%;
   height: 100%;
 }
 
-.container-jumbo{
+.container-jumbo {
   height: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column-reverse;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
-.message-div {
-  overflow-wrap: break-word; 
-  text-align: left;
-  width: fit-content;
+@media only screen and (max-width: 100px) {
+  .msg-block {
+    overflow-wrap: break-word;
+    text-align: left;
+    width: fit-content;
+  }
 }
 
-.msg-block:hover{
+.msg-block:hover {
   background-color: white;
   opacity: 0.5;
 
 }
 
-.inputBar{
+.inputBar {
   width: 100%;
 }
 
@@ -108,14 +120,14 @@ html, body {
   padding: 0;
 }
 
-.task-bar{
+.task-bar {
   position: absolute;
   top: 2px;
   right: 2px;
-  max-width: 300px;
+  width: 300px;
 }
 
- #taskClear {
+#taskClear {
   float: right;
 }
 
@@ -123,21 +135,21 @@ html, body {
   overflow-y: scroll;
 }
 
-.online-users-togg{
+.online-users-togg {
   position: absolute;
   top: 2px;
   left: 2px;
-  z-index: 5; 
+  z-index: 5;
 }
 
-.time{
+.time {
   font-size: 12px;
 }
 
 /* this function will hide the online users toggle box when the screen is large */
 @media only screen and (min-width: 767px) {
   .online-users-togg {
-      display: none;
+    display: none;
   }
 }
 
@@ -145,6 +157,12 @@ html, body {
 @media only screen and (max-width: 991px) {
   .container-jumbo {
     height: 90%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .container-jumbo {
+    height: 86%;
   }
 }
 

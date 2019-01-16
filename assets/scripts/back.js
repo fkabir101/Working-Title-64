@@ -57,12 +57,11 @@ chatLog.orderByChild("index").on("child_added", function (snapshot) {
     $(".container-jumbo").prepend("<div class='msg-block'><div class=' time font-weight-light font-italic'>" + timeConverted + "</div><div id = '" + index + "'class='message-div p-2 m-2 bg-primary text-white animated pulse'>" + message + "</div></div>");
   } else if (snapshot.val().type === "youtube") {
 
-    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    $(".container-jumbo").prepend("<div class='msg-block'><div id = '" + index + "'></div><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
     $(`#${index}`).append("<div id = '" + index + "Player'></div>");
-    createYoutube(index+"Player", message);
-  }
-  else if(snapshot.val().type === "tweet"){
-    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>"+timeConverted+"</div></div>");
+    createYoutube(index + "Player", message);
+  } else if (snapshot.val().type === "tweet") {
+    $(".container-jumbo").prepend("<div class='msg-block'<div id = '" + index + "'</div><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
     createTweet(index, message);
   } else if (snapshot.val().type === "giph") {
     $(".container-jumbo").prepend("<div class='p-2 m-2' id = '" + index + "'><div class='time font-weight-light font-italic'>" + timeConverted + "</div></div>");
@@ -106,10 +105,10 @@ function writeFirebase(message) {
     message = message.split("status/").pop();
     type = "tweet";
 
-  }
-  else if(message.includes("/giph")){
+  } else if (message.includes("/giph")) {
     message = message.split("giph").pop();
     type = "giph";
+
   } else if (message.includes("/rocketship")) {
     message = "<=======3";
     type = "text";
@@ -124,6 +123,15 @@ function writeFirebase(message) {
     type = "text";
   }
 
+  var messageObject = {
+    time: moment().format("X"),
+    type: type,
+    message: message,
+    index: messageCounter,
+    name: screenName
+  }
+  messageCounter++;
+=======
   if (type !== "task") {
     var messageObject = {
       time: moment().format("X"),
@@ -132,7 +140,6 @@ function writeFirebase(message) {
       index: messageCounter
     }
     messageCounter++;
-
 
     //Remove messages
     if (messageCounter > maxMessageCount) {
@@ -170,14 +177,14 @@ var screenName = null;
 // this handles the sign in through google
 
 $(document).ready(function () {
-  
+
   //creating instance of google provider object
   var provider = new firebase.auth.GoogleAuthProvider();
-  
+
   //add scope
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  
-  firebase.auth().signInWithPopup(provider).then(function(result) {
+
+  firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     console.log(result);
@@ -185,12 +192,12 @@ $(document).ready(function () {
     var user = result.user;
     // ...
 
-    console.log (user);
+    console.log(user);
 
     //this stores the user's name from google in a variable
     user.displayName = screenName;
 
-  }).catch(function(error) {
+  }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -200,7 +207,7 @@ $(document).ready(function () {
     var credential = error.credential;
     // ...
   });
-  
+
 });
 
 
@@ -209,10 +216,11 @@ var taskCounter = 0
 var testingVariableForDueDate
 
 //this function was used to add cards to the taskbar
- $("#message-submit").on("click", function () {
+$("#message-submit").on("click", function () {
 
   var f = "<div class='card task-inner'><div class='card-header cardHeadInner'>TASKDATE<button type='button' class='btn btn-outline-success btn-sm' id='taskClearCOUNTER'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body' id='taskBodyCOUNTER'>TASKTEXT</div></div>"
 
   $("#taskBody").append(f);
 
- });
+
+});
