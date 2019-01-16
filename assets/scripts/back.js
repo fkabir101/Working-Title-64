@@ -115,6 +115,10 @@ function writeFirebase(message) {
     message = " ¯\\_(ツ)_/¯";
     type = "text";
   } 
+  else if(message.includes("/flip")){
+    message = "(╯°□°）╯︵ ┻━┻";
+    type = "text";
+  } 
   else if (message.includes("/t")) {
     message = message.split("/t").pop();
     if (message.includes("by")){
@@ -125,7 +129,6 @@ function writeFirebase(message) {
   } else {
     type = "text";
   }
-  messageCounter++;
   if (type !== "task") {
     var messageObject = {
       time: moment().format("X"),

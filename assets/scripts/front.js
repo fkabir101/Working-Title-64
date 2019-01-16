@@ -10,13 +10,11 @@ $(document).ready(function () {
 
   //this function makes the task button show and hide and show the COMMANDS div
   $("#taskButton").click(function () {
-    // console.log("taskButton ");
     $(".task-bar").toggle();
   });
 
   //this function makes the user button hide and show the toggle TASKS div
   $("#usersButton").click(function () {
-    // console.log("usersButton");
     $(".online-users-togg").toggle();
   });
 
@@ -68,7 +66,6 @@ $(document).keyup(function (eventE) {
   if (eventE.keyCode === 13 && shiftOn === false) {
     event.preventDefault();
 
-    // console.log(eventE.keyCode);
     //if input field is empty give an indicator
     if ($("#textInput").val().length === 1) {
       $("#textInput").val("");
@@ -98,5 +95,4 @@ $(".taskBody").on("click", ".clearTask", function () {
   $(`#task${index}`).remove();
 
 });
-
 
