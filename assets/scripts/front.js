@@ -15,7 +15,7 @@ $(document).ready(function () {
   });
 
   //this function makes the user button hide and show the users online div
-  $("#taskButton").click(function () {
+  $("#usersButton").click(function () {
     // console.log("usersButton");
     $(".online-users-togg").toggle();
   });
@@ -70,7 +70,6 @@ $(document).keyup(function (eventE) {
 
     // console.log(eventE.keyCode);
     //if input field is empty give an indicator
-    console.log($("#textInput").val().length);
     if ($("#textInput").val().length === 1) {
       $("#textInput").val("");
       $("#textInput").addClass("border border-danger");
@@ -90,9 +89,3 @@ $(document).keyup(function (eventE) {
     }
   }
 });
-
-
-//this function sets the width of the jumbotron so the text does not go off screen
-$(".msg-block").css({
-  width: container - jumbo.width
-})
