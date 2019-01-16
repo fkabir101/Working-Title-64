@@ -31,6 +31,7 @@ body {
 
 .btn-outline-success {
   margin-left: 20px;
+  float: right;
 }
 
 .jumbotron {
@@ -131,7 +132,7 @@ body {
   float: right;
 }
 
-#taskBody {
+.taskBody {
   overflow-y: scroll;
 }
 
@@ -140,6 +141,7 @@ body {
   top: 2px;
   left: 2px;
   z-index: 5;
+  width: 271px;
 }
 
 .time {

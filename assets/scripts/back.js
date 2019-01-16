@@ -107,7 +107,6 @@ function writeFirebase(message) {
   } else if (message.includes("/giph")) {
     message = message.split("giph").pop();
     type = "giph";
-
   } else if (message.includes("/rocketship")) {
     message = "<=======3";
     type = "text";
@@ -183,7 +182,7 @@ $(document).ready(function () {
     // ...
 
     //this stores the user's name from google in a variable
-    screenName = user.displayName;
+    
 
   }).catch(function (error) {
     // Handle Errors here.
@@ -203,6 +202,6 @@ $(document).ready(function () {
   var convertedDate = moment(date).format("MM/DD/YYYY HH:mm");
   var taskCard = `<div id = 'task${index}'class='card task-inner'><div class='card-header cardHeadInner'>${convertedDate}<button type='button' index = '${index}'class='btn btn-outline-success btn-sm clearTask'> <i class='fas fa-clipboard-check'></i></button></div><div class='card-body'>${task}</div></div>`
 
-  $("#taskBody").append(taskCard);
+  $(".taskBody").append(taskCard);
 
  }
